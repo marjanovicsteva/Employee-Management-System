@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Data.Entity;
 using System.Drawing;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using EmployeeManagementSystem.Data;
 
-namespace EmployeeManagementSystem1
-{
+namespace EmployeeManagementSystem1 {
     /***********
      * *
      * *
@@ -69,7 +65,7 @@ namespace EmployeeManagementSystem1
         private void OnMouseMove(object sender, MouseEventArgs e)
         {
             if (!_dragging) return;
-            var p = PointToScreen(e.Location);
+            Point p = PointToScreen(e.Location);
             Location = new Point(p.X - this._startPoint.X, p.Y - this._startPoint.Y);
         }
 
@@ -85,26 +81,26 @@ namespace EmployeeManagementSystem1
 
         private async void btnSave_Click(object sender, EventArgs e)
         {
-            var id = txtIdNo.Text;
-            var name = txtFullName.Text;
-            var address = txtAddress.Text;
-            var contactNo = txtContact.Text;
-            var email = txtEmail.Text;
-            var desigination = txtDesignation.Text;
-            var department = comboBoxDepartment.Text;
-            var dateOfJoin = dateTimePicker.Text;
-            var wageRate = txtWage.Text;
-            var hourWorked = txtWorkedHour.Text;
+            string id = txtIdNo.Text;
+            string name = txtFullName.Text;
+            string address = txtAddress.Text;
+            string contactNo = txtContact.Text;
+            string email = txtEmail.Text;
+            string desigination = txtDesignation.Text;
+            string department = comboBoxDepartment.Text;
+            string dateOfJoin = dateTimePicker.Text;
+            string wageRate = txtWage.Text;
+            string hourWorked = txtWorkedHour.Text;
 
-            using (var context = new EmployeeManagementContext())
+            using (EmployeeManagementContext context = new EmployeeManagementContext())
             {
-                var emp = new Employee(id, name, address, contactNo, email, desigination, department, dateOfJoin, wageRate, hourWorked);
+                Employee emp = new Employee(id, name, address, contactNo, email, desigination, department, dateOfJoin, wageRate, hourWorked);
                 context.Employees.Add(emp);
                 await context.SaveChangesAsync();
             }
 
             //instance event args and value has been passed 
-            var args = new IdentityEventArgs(id, name, address, contactNo, email, desigination, department, dateOfJoin, wageRate, hourWorked);
+            IdentityEventArgs args = new IdentityEventArgs(id, name, address, contactNo, email, desigination, department, dateOfJoin, wageRate, hourWorked);
 
             //Event has be raised with update arguments of delegate
             IdentityUpdated?.Invoke(this, args);

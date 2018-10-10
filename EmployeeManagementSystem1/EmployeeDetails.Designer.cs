@@ -56,6 +56,7 @@
             this.workedHour = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
+            this.exportEmployees = new System.Windows.Forms.Button();
             this.sideBarPanel.SuspendLayout();
             this.logoPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxLogo)).BeginInit();
@@ -192,7 +193,7 @@
             this.importEmployees.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.importEmployees.ForeColor = System.Drawing.Color.White;
             this.importEmployees.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.importEmployees.Location = new System.Drawing.Point(627, 453);
+            this.importEmployees.Location = new System.Drawing.Point(500, 453);
             this.importEmployees.Name = "importEmployees";
             this.importEmployees.Size = new System.Drawing.Size(134, 40);
             this.importEmployees.TabIndex = 1;
@@ -274,6 +275,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.exportEmployees);
             this.panel1.Controls.Add(this.dataGridView);
             this.panel1.Controls.Add(this.importEmployees);
             this.panel1.Controls.Add(this.btnEdit);
@@ -387,7 +389,7 @@
             this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEdit.ForeColor = System.Drawing.Color.White;
             this.btnEdit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEdit.Location = new System.Drawing.Point(773, 453);
+            this.btnEdit.Location = new System.Drawing.Point(780, 453);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(120, 40);
             this.btnEdit.TabIndex = 6;
@@ -419,6 +421,25 @@
             this.btnDelete.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnMouseDown);
             this.btnDelete.MouseMove += new System.Windows.Forms.MouseEventHandler(this.OnMouseMove);
             this.btnDelete.MouseUp += new System.Windows.Forms.MouseEventHandler(this.OnMouseUp);
+            // 
+            // exportEmployees
+            // 
+            this.exportEmployees.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(151)))), ((int)(((byte)(31)))));
+            this.exportEmployees.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.exportEmployees.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.exportEmployees.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(43)))), ((int)(((byte)(55)))));
+            this.exportEmployees.FlatAppearance.BorderSize = 0;
+            this.exportEmployees.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.exportEmployees.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.exportEmployees.ForeColor = System.Drawing.Color.White;
+            this.exportEmployees.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.exportEmployees.Location = new System.Drawing.Point(640, 453);
+            this.exportEmployees.Name = "exportEmployees";
+            this.exportEmployees.Size = new System.Drawing.Size(134, 40);
+            this.exportEmployees.TabIndex = 7;
+            this.exportEmployees.Text = "Export Data";
+            this.exportEmployees.UseVisualStyleBackColor = false;
+            this.exportEmployees.Click += new System.EventHandler(this.exportEmployees_Click);
             // 
             // EmployeeSysMainForm
             // 
@@ -479,6 +500,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn WageRate;
         private System.Windows.Forms.DataGridViewTextBoxColumn workedHour;
         private System.Windows.Forms.Button btnGenerateReport;
+        private System.Windows.Forms.Button exportEmployees;
     }
 }
 

@@ -1,7 +1,6 @@
 ﻿using EmployeeManagementSystem.Data;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -31,7 +30,7 @@ namespace EmployeeManagementSystem1
         {
             const string message = "You are about to close application. Are you sure you want to continue?";
             const string caption = "Confirm close";
-            var result = MessageBox.Show(message, caption,
+            DialogResult result = MessageBox.Show(message, caption,
                                      MessageBoxButtons.OKCancel,
                                      MessageBoxIcon.Question);
             if (result == DialogResult.OK)
@@ -52,7 +51,7 @@ namespace EmployeeManagementSystem1
         private void OnMouseMove(object sender, MouseEventArgs e)
         {
             if (!_dragging) return;
-            var p = PointToScreen(e.Location);
+            Point p = PointToScreen(e.Location);
             Location = new Point(p.X - this._startPoint.X, p.Y - this._startPoint.Y);
         }
 
@@ -64,7 +63,7 @@ namespace EmployeeManagementSystem1
 
         private void addEmployee_Click(object sender, EventArgs e)
         {
-            var addEmp = new AddEmployee();
+            AddEmployee addEmp = new AddEmployee();
             addEmp.IdentityUpdated += this.SaveRecord;
             addEmp.ShowDialog();
         }
@@ -74,7 +73,7 @@ namespace EmployeeManagementSystem1
             try
             {
 
-                var count = dataGridView.Rows.Count-1;
+                int count = dataGridView.Rows.Count-1;
                 dataGridView.Rows.Add();
                 dataGridView.Rows[count].Cells[0].Value = e.Id;
                 dataGridView.Rows[count].Cells[1].Value = e.FullName;
@@ -114,20 +113,20 @@ namespace EmployeeManagementSystem1
         {
             try
             {
-                var row = dataGridView.CurrentCell.RowIndex;
-                var id = Convert.ToString(dataGridView.Rows[row].Cells[0].Value);
-                var name = Convert.ToString(dataGridView.Rows[row].Cells[1].Value);
-                var address = Convert.ToString(dataGridView.Rows[row].Cells[2].Value);
-                var contact = Convert.ToString(dataGridView.Rows[row].Cells[3].Value);
-                var email = Convert.ToString(dataGridView.Rows[row].Cells[4].Value);
-                var desigination = Convert.ToString(dataGridView.Rows[row].Cells[5].Value);
-                var department = Convert.ToString(dataGridView.Rows[row].Cells[6].Value);
-                var dateOfJoin = Convert.ToString(dataGridView.Rows[row].Cells[7].Value);
-                var wageRate = Convert.ToString(dataGridView.Rows[row].Cells[8].Value);
-                var hourWorked = Convert.ToString(dataGridView.Rows[row].Cells[9].Value);
+                int row = dataGridView.CurrentCell.RowIndex;
+                string id = Convert.ToString(dataGridView.Rows[row].Cells[0].Value);
+                string name = Convert.ToString(dataGridView.Rows[row].Cells[1].Value);
+                string address = Convert.ToString(dataGridView.Rows[row].Cells[2].Value);
+                string contact = Convert.ToString(dataGridView.Rows[row].Cells[3].Value);
+                string email = Convert.ToString(dataGridView.Rows[row].Cells[4].Value);
+                string desigination = Convert.ToString(dataGridView.Rows[row].Cells[5].Value);
+                string department = Convert.ToString(dataGridView.Rows[row].Cells[6].Value);
+                string dateOfJoin = Convert.ToString(dataGridView.Rows[row].Cells[7].Value);
+                string wageRate = Convert.ToString(dataGridView.Rows[row].Cells[8].Value);
+                string hourWorked = Convert.ToString(dataGridView.Rows[row].Cells[9].Value);
 
 
-                var addEmp = new AddEmployee();
+                AddEmployee addEmp = new AddEmployee();
                 addEmp.LoadData(id, name, address, contact, email, desigination, department, dateOfJoin, wageRate, hourWorked);
                 addEmp.IdentityUpdated += this.UpdateRecord;
                 addEmp.ShowDialog();
@@ -162,19 +161,19 @@ namespace EmployeeManagementSystem1
         //This method will add all the required values to generate payroll in wageDetails list
         public void GeneratePayroll()
         {
-            var wageDetailsList = new List<CalculateTotalWage>();
+            List<CalculateTotalWage> wageDetailsList = new List<CalculateTotalWage>();
             try
             {
-                for (var i = 0; i < dataGridView.Rows.Count - 1; i++)
+                for (int i = 0; i < dataGridView.Rows.Count - 1; i++)
                 {
-                    var name = Convert.ToString(dataGridView.Rows[i].Cells[1].Value);
-                    var department = Convert.ToString(dataGridView.Rows[i].Cells[6].Value);
-                    var wageRate = int.Parse(dataGridView.Rows[i].Cells[8].Value.ToString());
-                    var workedHour = int.Parse(dataGridView.Rows[i].Cells[9].Value.ToString());
+                    string name = Convert.ToString(dataGridView.Rows[i].Cells[1].Value);
+                    string department = Convert.ToString(dataGridView.Rows[i].Cells[6].Value);
+                    int wageRate = int.Parse(dataGridView.Rows[i].Cells[8].Value.ToString());
+                    int workedHour = int.Parse(dataGridView.Rows[i].Cells[9].Value.ToString());
 
                     wageDetailsList.Add(new CalculateTotalWage(name, department, wageRate, workedHour));
                 }
-                var generatePayroll = new GeneratePayRoll(wageDetailsList);
+                GeneratePayRoll generatePayroll = new GeneratePayRoll(wageDetailsList);
                 generatePayroll.ShowDialog();
             }
 
@@ -186,7 +185,7 @@ namespace EmployeeManagementSystem1
 
         private void btnGenerateReport_Click(object sender, EventArgs e)
         {
-            var report = new DisplayChart(dataGridView);
+            DisplayChart report = new DisplayChart(dataGridView);
             report.ShowDialog();
         }
         
@@ -198,24 +197,24 @@ namespace EmployeeManagementSystem1
          * **/
         public async void ImportEmployeeFromCsv()
         {
-            using (var openFileDialog1 = new OpenFileDialog() { Filter = "CSV|*.csv", ValidateNames = true, Multiselect = false })
+            using (OpenFileDialog openFileDialog1 = new OpenFileDialog() { Filter = "CSV|*.csv", ValidateNames = true, Multiselect = false })
             {
                 if (openFileDialog1.ShowDialog() != DialogResult.OK) return;
 
                 const char sepChar = ',';
                 const char quoteChar = '"';
-                var employeeList = new List<string[]>();
+                List<string[]> employeeList = new List<string[]>();
                 try
                 {
                     using (Stream stream = null)
                     {
-                        var rows = File.ReadAllLines(openFileDialog1.FileName);
-                        foreach (var csvRow in rows)
+                        string[] rows = File.ReadAllLines(openFileDialog1.FileName);
+                        foreach (string csvRow in rows)
                         {
-                            var inQuotes = false;
-                            var fields = new List<string>();
-                            var field = "";
-                            for (var i = 0; i < csvRow.Length; i++)
+                            bool inQuotes = false;
+                            List<string> fields = new List<string>();
+                            string field = "";
+                            for (int i = 0; i < csvRow.Length; i++)
                             {
                                 if (inQuotes)
                                 {
@@ -271,12 +270,12 @@ namespace EmployeeManagementSystem1
                 {
                     MessageBox.Show(er.Message, "Error !", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                foreach (var value in employeeList)
+                foreach (string[] value in employeeList)
                 {
-                    using (var context = new EmployeeManagementContext())
+                    using (EmployeeManagementContext context = new EmployeeManagementContext())
                     {
                         dataGridView.Rows.Add(value[0], value[1], value[2], value[3], value[4], value[5], value[6], value[7], value[8], value[9]);
-                        var emp = new Employee(value[0], value[1], value[2], value[3], value[4], value[5], value[6], value[7], value[8], value[9]);
+                        Employee emp = new Employee(value[0], value[1], value[2], value[3], value[4], value[5], value[6], value[7], value[8], value[9]);
                         context.Employees.Add(emp);
                         try
                         {
@@ -295,14 +294,14 @@ namespace EmployeeManagementSystem1
 
         public void GetEmployees()
         {
-            using(var context = new EmployeeManagementContext())
+            using(EmployeeManagementContext context = new EmployeeManagementContext())
             {
                 List<Employee> employees = context.Employees.ToList<Employee>();
                 if (employees.Count > 1)
                 {
                     foreach (Employee emp in employees)
                     {
-                        var count = dataGridView.Rows.Count - 1;
+                        int count = dataGridView.Rows.Count - 1;
                         dataGridView.Rows.Add();
                         dataGridView.Rows[count].Cells[0].Value = emp.EmployeeID;
                         dataGridView.Rows[count].Cells[1].Value = emp.FullName;
@@ -318,6 +317,16 @@ namespace EmployeeManagementSystem1
                     }
                 }
             }
+        }
+
+        private void exportEmployees_Click(object sender, EventArgs e) {
+            /**
+             *  MAKE EXPORT FUNCTION
+             *  1. Get the data from the app
+             *  2. Make a matrix
+             *  3. Format a string from matrix to comply CSV rules
+             *  4. Prompt user to save the file (and handle user decisions)
+            **/
         }
     }
 }

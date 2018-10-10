@@ -61,11 +61,11 @@ namespace EmployeeManagementSystem1
                 {
                     if (Convert.ToInt32(payrollDataGridView.Rows[i].Cells[4].Value) > Convert.ToInt32(payrollDataGridView.Rows[j].Cells[4].Value))
                     {
-                        var tempName = payrollDataGridView.Rows[i].Cells[0].Value;
-                        var tempDepartment = payrollDataGridView.Rows[i].Cells[1].Value;
-                        var tempWageRate = payrollDataGridView.Rows[i].Cells[2].Value;
-                        var tempWorkedHour = payrollDataGridView.Rows[i].Cells[3].Value;
-                        var tempTotalWage = payrollDataGridView.Rows[i].Cells[4].Value;
+                        object tempName = payrollDataGridView.Rows[i].Cells[0].Value;
+                        object tempDepartment = payrollDataGridView.Rows[i].Cells[1].Value;
+                        object tempWageRate = payrollDataGridView.Rows[i].Cells[2].Value;
+                        object tempWorkedHour = payrollDataGridView.Rows[i].Cells[3].Value;
+                        object tempTotalWage = payrollDataGridView.Rows[i].Cells[4].Value;
 
                         payrollDataGridView.Rows[i].Cells[0].Value = payrollDataGridView.Rows[j].Cells[0].Value;
                         payrollDataGridView.Rows[i].Cells[1].Value = payrollDataGridView.Rows[j].Cells[1].Value;
@@ -95,11 +95,11 @@ namespace EmployeeManagementSystem1
                 {
                     if (Convert.ToInt32(payrollDataGridView.Rows[i].Cells[4].Value) < Convert.ToInt32(payrollDataGridView.Rows[j].Cells[4].Value))
                     {
-                        var tempName = payrollDataGridView.Rows[i].Cells[0].Value;
-                        var tempDepartment = payrollDataGridView.Rows[i].Cells[1].Value;
-                        var tempWageRate = payrollDataGridView.Rows[i].Cells[2].Value;
-                        var tempWorkedHour = payrollDataGridView.Rows[i].Cells[3].Value;
-                        var tempTotalWage = payrollDataGridView.Rows[i].Cells[4].Value;
+                        object tempName = payrollDataGridView.Rows[i].Cells[0].Value;
+                        object tempDepartment = payrollDataGridView.Rows[i].Cells[1].Value;
+                        object tempWageRate = payrollDataGridView.Rows[i].Cells[2].Value;
+                        object tempWorkedHour = payrollDataGridView.Rows[i].Cells[3].Value;
+                        object tempTotalWage = payrollDataGridView.Rows[i].Cells[4].Value;
 
                         payrollDataGridView.Rows[i].Cells[0].Value = payrollDataGridView.Rows[j].Cells[0].Value;
                         payrollDataGridView.Rows[i].Cells[1].Value = payrollDataGridView.Rows[j].Cells[1].Value;
@@ -131,11 +131,11 @@ namespace EmployeeManagementSystem1
                 {
                     if (string.Compare(payrollDataGridView.Rows[i].Cells[0].Value.ToString(), payrollDataGridView.Rows[j].Cells[0].Value.ToString())> 0)
                     {
-                        var tempName = payrollDataGridView.Rows[i].Cells[0].Value;
-                        var tempDepartment = payrollDataGridView.Rows[i].Cells[1].Value;
-                        var tempWageRate = payrollDataGridView.Rows[i].Cells[2].Value;
-                        var tempWorkedHour = payrollDataGridView.Rows[i].Cells[3].Value;
-                        var tempTotalWage = payrollDataGridView.Rows[i].Cells[4].Value;
+                        object tempName = payrollDataGridView.Rows[i].Cells[0].Value;
+                        object tempDepartment = payrollDataGridView.Rows[i].Cells[1].Value;
+                        object tempWageRate = payrollDataGridView.Rows[i].Cells[2].Value;
+                        object tempWorkedHour = payrollDataGridView.Rows[i].Cells[3].Value;
+                        object tempTotalWage = payrollDataGridView.Rows[i].Cells[4].Value;
 
                         payrollDataGridView.Rows[i].Cells[0].Value = payrollDataGridView.Rows[j].Cells[0].Value;
                         payrollDataGridView.Rows[i].Cells[1].Value = payrollDataGridView.Rows[j].Cells[1].Value;
@@ -164,11 +164,11 @@ namespace EmployeeManagementSystem1
                 {
                     if (string.Compare(payrollDataGridView.Rows[i].Cells[0].Value.ToString(), payrollDataGridView.Rows[j].Cells[0].Value.ToString()) < 0)
                     {
-                        var tempName = payrollDataGridView.Rows[i].Cells[0].Value;
-                        var tempDepartment = payrollDataGridView.Rows[i].Cells[1].Value;
-                        var tempWageRate = payrollDataGridView.Rows[i].Cells[2].Value;
-                        var tempWorkedHour = payrollDataGridView.Rows[i].Cells[3].Value;
-                        var tempTotalWage = payrollDataGridView.Rows[i].Cells[4].Value;
+                        object tempName = payrollDataGridView.Rows[i].Cells[0].Value;
+                        object tempDepartment = payrollDataGridView.Rows[i].Cells[1].Value;
+                        object tempWageRate = payrollDataGridView.Rows[i].Cells[2].Value;
+                        object tempWorkedHour = payrollDataGridView.Rows[i].Cells[3].Value;
+                        object tempTotalWage = payrollDataGridView.Rows[i].Cells[4].Value;
 
                         payrollDataGridView.Rows[i].Cells[0].Value = payrollDataGridView.Rows[j].Cells[0].Value;
                         payrollDataGridView.Rows[i].Cells[1].Value = payrollDataGridView.Rows[j].Cells[1].Value;
